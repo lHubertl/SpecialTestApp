@@ -3862,6 +3862,9 @@ namespace SpecialTestApp
 			// aapt resource value: 0x7f0a0022
 			public const int Platform_Widget_AppCompat_Spinner = 2131361826;
 			
+			// aapt resource value: 0x7f0a0181
+			public const int RadialFragmentDialogStyle = 2131362177;
+			
 			// aapt resource value: 0x7f0a002b
 			public const int RtlOverlay_DialogWindowTitle_AppCompat = 2131361835;
 			

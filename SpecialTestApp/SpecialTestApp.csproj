@@ -60,11 +60,12 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fragments\RadialMenuView.cs" />
+    <Compile Include="Helpers\BlurImageHelper.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup.cs" />
+    <Compile Include="Views\RadialMenuView.cs" />
     <Compile Include="Views\WelcomeView.cs" />
   </ItemGroup>
   <ItemGroup>

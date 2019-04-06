@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_margin="20px"
+        local:MvxBind="Text WelcomeText"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/favoritePetImageView" />
+    <Button
+        android:layout_height="wrap_content" 
+        android:layout_width="match_parent" 
+        android:text="Open Radial Menu" 
+        android:id="@+id/OpenRadialMenuBtn"
+        android:gravity="center_horizontal"
+        local:MvxBind="Click OpenRadialMenuCommand"/>
+</LinearLayout>

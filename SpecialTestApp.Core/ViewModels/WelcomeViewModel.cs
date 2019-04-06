@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using SpecialTestApp.Core.Services;
 
@@ -10,6 +11,7 @@ namespace SpecialTestApp.Core.ViewModels
     public class WelcomeViewModel : MvxViewModel
     {
         private readonly IUserService _userService;
+        private readonly IMvxNavigationService _navigationService;
 
         private string _favoritePetImageSource;
         public string FavoritePetImageSource
@@ -27,9 +29,10 @@ namespace SpecialTestApp.Core.ViewModels
 
         public ICommand OpenRadialMenuCommand => new MvxAsyncCommand(ExecuteOpenRadialMenuCommand);
 
-        public WelcomeViewModel(IUserService userService)
+        public WelcomeViewModel(IUserService userService, IMvxNavigationService navigationService)
         {
             _userService = userService;
+            _navigationService = navigationService;
         }
 
         public override async Task Initialize()
@@ -44,7 +47,7 @@ namespace SpecialTestApp.Core.ViewModels
 
         private Task ExecuteOpenRadialMenuCommand()
         {
-            return Task.FromResult(true);
+            return _navigationService.Navigate<RadialMenuViewModel>();
         }
     }
 }

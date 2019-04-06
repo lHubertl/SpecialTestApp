@@ -3119,22 +3119,25 @@ namespace SpecialTestApp
 			public const int notification_template_part_time = 2130968630;
 			
 			// aapt resource value: 0x7f040037
-			public const int select_dialog_item_material = 2130968631;
+			public const int RadialMenuView = 2130968631;
 			
 			// aapt resource value: 0x7f040038
-			public const int select_dialog_multichoice_material = 2130968632;
+			public const int select_dialog_item_material = 2130968632;
 			
 			// aapt resource value: 0x7f040039
-			public const int select_dialog_singlechoice_material = 2130968633;
+			public const int select_dialog_multichoice_material = 2130968633;
 			
 			// aapt resource value: 0x7f04003a
-			public const int support_simple_spinner_dropdown_item = 2130968634;
+			public const int select_dialog_singlechoice_material = 2130968634;
 			
 			// aapt resource value: 0x7f04003b
-			public const int tooltip = 2130968635;
+			public const int support_simple_spinner_dropdown_item = 2130968635;
 			
 			// aapt resource value: 0x7f04003c
-			public const int WelcomeView = 2130968636;
+			public const int tooltip = 2130968636;
+			
+			// aapt resource value: 0x7f04003d
+			public const int WelcomeView = 2130968637;
 			
 			static Layout()
 			{

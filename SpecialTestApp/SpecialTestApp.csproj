@@ -111,6 +111,10 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AndroidBinding\AndroidBinding.csproj">
+      <Project>{4bfb1bd0-7afc-4cd2-834d-af746ca39b82}</Project>
+      <Name>AndroidBinding</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SpecialTestApp.Core\SpecialTestApp.Core.csproj">
       <Project>{9429c282-1f38-41bf-9990-8c15daffa201}</Project>
       <Name>SpecialTestApp.Core</Name>
@@ -186,6 +190,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxxhdpi\outline_shopping_basket_white_18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\drawable\button_action_blue.png" />
+    <TransformFile Include="Resources\drawable\button_action_blue_selector.xml" />
+    <Content Include="Resources\drawable\button_action_blue_touch.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

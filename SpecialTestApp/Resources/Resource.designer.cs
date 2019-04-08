@@ -2453,8 +2453,8 @@ namespace SpecialTestApp
 			// aapt resource value: 0x7f08001e
 			public const int MvxBindingTagUnique = 2131230750;
 			
-			// aapt resource value: 0x7f0800b1
-			public const int OpenRadialMenuBtn = 2131230897;
+			// aapt resource value: 0x7f0800b2
+			public const int OpenRadialMenuBtn = 2131230898;
 			
 			// aapt resource value: 0x7f080038
 			public const int SHIFT = 2131230776;
@@ -2513,8 +2513,8 @@ namespace SpecialTestApp
 			// aapt resource value: 0x7f08005e
 			public const int action_mode_close_button = 2131230814;
 			
-			// aapt resource value: 0x7f0800b4
-			public const int action_settings = 2131230900;
+			// aapt resource value: 0x7f0800b5
+			public const int action_settings = 2131230901;
 			
 			// aapt resource value: 0x7f08009d
 			public const int action_text = 2131230877;
@@ -2645,8 +2645,8 @@ namespace SpecialTestApp
 			// aapt resource value: 0x7f080074
 			public const int expanded_menu = 2131230836;
 			
-			// aapt resource value: 0x7f0800b0
-			public const int favoritePetImageView = 2131230896;
+			// aapt resource value: 0x7f0800b1
+			public const int favoritePetImageView = 2131230897;
 			
 			// aapt resource value: 0x7f080052
 			public const int fill = 2131230802;
@@ -2711,14 +2711,14 @@ namespace SpecialTestApp
 			// aapt resource value: 0x7f080063
 			public const int list_item = 2131230819;
 			
-			// aapt resource value: 0x7f0800b3
-			public const int masked = 2131230899;
+			// aapt resource value: 0x7f0800b4
+			public const int masked = 2131230900;
 			
 			// aapt resource value: 0x7f0800a1
 			public const int media_actions = 2131230881;
 			
-			// aapt resource value: 0x7f0800af
-			public const int message = 2131230895;
+			// aapt resource value: 0x7f0800b0
+			public const int message = 2131230896;
 			
 			// aapt resource value: 0x7f080033
 			public const int middle = 2131230771;
@@ -2767,6 +2767,9 @@ namespace SpecialTestApp
 			
 			// aapt resource value: 0x7f080007
 			public const int progress_horizontal = 2131230727;
+			
+			// aapt resource value: 0x7f0800af
+			public const int radialMenuFrameLayout = 2131230895;
 			
 			// aapt resource value: 0x7f080077
 			public const int radio = 2131230839;
@@ -2969,8 +2972,8 @@ namespace SpecialTestApp
 			// aapt resource value: 0x7f080016
 			public const int view_offset_helper = 2131230742;
 			
-			// aapt resource value: 0x7f0800b2
-			public const int visible = 2131230898;
+			// aapt resource value: 0x7f0800b3
+			public const int visible = 2131230899;
 			
 			// aapt resource value: 0x7f08003e
 			public const int withText = 2131230782;

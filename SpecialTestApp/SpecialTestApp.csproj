@@ -68,7 +68,6 @@
     <Compile Include="Setup.cs" />
     <Compile Include="Views\Controls\RoundedImageView.cs" />
     <Compile Include="Views\RadialMenuView.cs" />
-    <Compile Include="Views\Test.cs" />
     <Compile Include="Views\WelcomeView.cs" />
   </ItemGroup>
   <ItemGroup>

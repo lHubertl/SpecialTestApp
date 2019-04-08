@@ -37,7 +37,9 @@ namespace SpecialTestApp.Views
             SetBlurBackground(view);
             var imageView = InitializeImageView(view);
 
-            InitializeMenu(view);
+            var frameLayout = view.FindViewById<FrameLayout>(Resource.Id.radialMenuFrameLayout);
+
+            InitializeMenu(frameLayout);
 
             return view;
         }
@@ -123,7 +125,7 @@ namespace SpecialTestApp.Views
             return bitmap;
         }
 
-        private void InitializeMenu(View view)
+        private void InitializeMenu(ViewGroup view)
         {
             // Set up the large red button on the center right side
             // With custom button and content sizes and margins
@@ -162,11 +164,12 @@ namespace SpecialTestApp.Views
                 redActionButtonContentMargin);
 
             var leftCenterButton = new FloatingActionButton.Builder(context)
+                .SetContentContainer(view)
                 .SetContentView(fabIconStar, fabIconStarParams)
                 .SetBackgroundDrawable(Resources.GetDrawable(Resource.Drawable.button_action_blue_selector, null))
-                .SetPosition(GravityFlags.Center)
+                .SetPosition((int)GravityFlags.Center)
                 .SetLayoutParams(starParams)
-                .Build(view);
+                .Build();
 
             var lCSubBuilder = new SubActionButton.Builder(context);
             lCSubBuilder.SetBackgroundDrawable(Resources.GetDrawable(Resource.Drawable.button_action_blue_selector, null));
@@ -200,6 +203,7 @@ namespace SpecialTestApp.Views
 
             // Build another menu with custom options
             var leftCenterMenu = new FloatingActionMenu.Builder(context)
+                .SetContentContainer(view)
                 .AddSubActionView(lCSubBuilder.SetContentView(lcIcon1, blueContentParams).Build())
                 .AddSubActionView(lCSubBuilder.SetContentView(lcIcon2, blueContentParams).Build())
                 .AddSubActionView(lCSubBuilder.SetContentView(lcIcon3, blueContentParams).Build())

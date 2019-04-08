@@ -10,6 +10,7 @@ using MvvmCross.Platforms.Android.Presenters.Attributes;
 using MvvmCross.Platforms.Android.Views.Fragments;
 using SpecialTestApp.Core.ViewModels;
 using SpecialTestApp.Helpers;
+using SpecialTestApp.Views.Controls;
 
 namespace SpecialTestApp.Views
 {
@@ -27,26 +28,24 @@ namespace SpecialTestApp.Views
             base.OnCreateView(inflater, container, savedInstanceState);
 
             var view = this.BindingInflate(Resource.Layout.RadialMenuView, null, true);
+
             SetBlurBackground(view);
-            
+            InitializeImageView(view);
+
             return view;
         }
-
-        public override void OnStart()
-        {
-            base.OnStart();
-            View.Click += ViewOnClick;
-        }
-
-        public override void OnStop()
-        {
-            base.OnStop();
-            View.Click -= ViewOnClick;
-        }
-
+        
         private void ViewOnClick(object sender, EventArgs e)
         {
             ViewModel.BackCommand?.Execute(null);
+        }
+
+        private void InitializeImageView(View view)
+        {
+            var imageView = view.FindViewById<RoundedImageView>(Resource.Id.roundedImageView);
+
+            var bitmap = GraphicHelper.GetImageBitmapFromUrl(ViewModel.UserImageSource);
+            imageView.SetImageBitmap(bitmap);
         }
 
         private void SetBlurBackground(View view)

@@ -6,9 +6,16 @@ using MvvmCross.ViewModels;
 
 namespace SpecialTestApp.Core.ViewModels
 {
-    public class RadialMenuViewModel : MvxViewModel
+    public class RadialMenuViewModel : MvxViewModel<string> 
     {
         private readonly IMvxNavigationService _navigationService;
+
+        private string _userImageSource;
+        public string UserImageSource
+        {
+            get => _userImageSource;
+            set => SetProperty(ref _userImageSource, value);
+        }
 
         public ICommand BackCommand => new MvxAsyncCommand(ExecuteBackCommand);
 
@@ -20,6 +27,11 @@ namespace SpecialTestApp.Core.ViewModels
         private Task ExecuteBackCommand()
         {
             return _navigationService.Close(this);
+        }
+
+        public override void Prepare(string parameter)
+        {
+            UserImageSource = parameter;
         }
     }
 }

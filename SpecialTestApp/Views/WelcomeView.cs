@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Net;
 using Android.App;
-using Android.Graphics;
 using Android.OS;
 using Android.Widget;
 using MvvmCross.Platforms.Android.Views;
 using SpecialTestApp.Core.ViewModels;
+using SpecialTestApp.Helpers;
 
 namespace SpecialTestApp.Views
 {
@@ -40,7 +39,7 @@ namespace SpecialTestApp.Views
 
         private void InitializeImageView()
         {
-            var bitmap = GetImageBitmapFromUrl(ViewModel.FavoritePetImageSource);
+            var bitmap = GraphicHelper.GetImageBitmapFromUrl(ViewModel.FavoritePetImageSource);
             _favoritePetImageView.SetImageBitmap(bitmap);
         }
 
@@ -48,22 +47,5 @@ namespace SpecialTestApp.Views
         {
             MoveTaskToBack(true);
         }
-
-        private Bitmap GetImageBitmapFromUrl(string url)
-        {
-            Bitmap imageBitmap = null;
-
-            using (var webClient = new WebClient())
-            {
-                var imageBytes = webClient.DownloadData(url);
-                if (imageBytes != null && imageBytes.Length > 0)
-                {
-                    imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-                }
-            }
-
-            return imageBitmap;
-        }
-
     }
 }

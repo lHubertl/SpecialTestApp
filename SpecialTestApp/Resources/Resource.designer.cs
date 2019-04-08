@@ -2378,8 +2378,8 @@ namespace SpecialTestApp
 			// aapt resource value: 0x7f08001e
 			public const int MvxBindingTagUnique = 2131230750;
 			
-			// aapt resource value: 0x7f0800b0
-			public const int OpenRadialMenuBtn = 2131230896;
+			// aapt resource value: 0x7f0800b1
+			public const int OpenRadialMenuBtn = 2131230897;
 			
 			// aapt resource value: 0x7f080038
 			public const int SHIFT = 2131230776;
@@ -2567,8 +2567,8 @@ namespace SpecialTestApp
 			// aapt resource value: 0x7f080074
 			public const int expanded_menu = 2131230836;
 			
-			// aapt resource value: 0x7f0800af
-			public const int favoritePetImageView = 2131230895;
+			// aapt resource value: 0x7f0800b0
+			public const int favoritePetImageView = 2131230896;
 			
 			// aapt resource value: 0x7f080052
 			public const int fill = 2131230802;
@@ -2633,14 +2633,14 @@ namespace SpecialTestApp
 			// aapt resource value: 0x7f080063
 			public const int list_item = 2131230819;
 			
-			// aapt resource value: 0x7f0800b2
-			public const int masked = 2131230898;
+			// aapt resource value: 0x7f0800b3
+			public const int masked = 2131230899;
 			
 			// aapt resource value: 0x7f0800a1
 			public const int media_actions = 2131230881;
 			
-			// aapt resource value: 0x7f0800ae
-			public const int message = 2131230894;
+			// aapt resource value: 0x7f0800af
+			public const int message = 2131230895;
 			
 			// aapt resource value: 0x7f080033
 			public const int middle = 2131230771;
@@ -2701,6 +2701,9 @@ namespace SpecialTestApp
 			
 			// aapt resource value: 0x7f0800a5
 			public const int right_side = 2131230885;
+			
+			// aapt resource value: 0x7f0800ae
+			public const int roundedImageView = 2131230894;
 			
 			// aapt resource value: 0x7f08000c
 			public const int save_image_matrix = 2131230732;
@@ -2888,8 +2891,8 @@ namespace SpecialTestApp
 			// aapt resource value: 0x7f080016
 			public const int view_offset_helper = 2131230742;
 			
-			// aapt resource value: 0x7f0800b1
-			public const int visible = 2131230897;
+			// aapt resource value: 0x7f0800b2
+			public const int visible = 2131230898;
 			
 			// aapt resource value: 0x7f08003e
 			public const int withText = 2131230782;
@@ -3861,9 +3864,6 @@ namespace SpecialTestApp
 			
 			// aapt resource value: 0x7f0a0022
 			public const int Platform_Widget_AppCompat_Spinner = 2131361826;
-			
-			// aapt resource value: 0x7f0a0181
-			public const int RadialFragmentDialogStyle = 2131362177;
 			
 			// aapt resource value: 0x7f0a002b
 			public const int RtlOverlay_DialogWindowTitle_AppCompat = 2131361835;

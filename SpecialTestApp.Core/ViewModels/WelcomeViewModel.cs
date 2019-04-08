@@ -4,6 +4,7 @@ using System.Windows.Input;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using SpecialTestApp.Core.Models;
 using SpecialTestApp.Core.Services;
 
 namespace SpecialTestApp.Core.ViewModels
@@ -12,6 +13,7 @@ namespace SpecialTestApp.Core.ViewModels
     {
         private readonly IUserService _userService;
         private readonly IMvxNavigationService _navigationService;
+        private UserModel _userModel;
 
         private string _favoritePetImageSource;
         public string FavoritePetImageSource
@@ -39,15 +41,16 @@ namespace SpecialTestApp.Core.ViewModels
         {
             await base.Initialize();
 
-            var user = _userService.GetUserModel();
+            _userModel = _userService.GetUserModel();
 
-            FavoritePetImageSource = user.FavoritePetImageSource;
+            FavoritePetImageSource = _userModel.FavoritePetImageSource;
             WelcomeText = $"Hello world, it is now {DateTime.Now:g}";
         }
 
         private Task ExecuteOpenRadialMenuCommand()
         {
-            return _navigationService.Navigate<RadialMenuViewModel>();
+            var userImageUrl = _userModel.ImageSource;
+            return _navigationService.Navigate<RadialMenuViewModel, string>(userImageUrl);
         }
     }
 }

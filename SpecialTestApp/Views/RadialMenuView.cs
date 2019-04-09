@@ -39,7 +39,18 @@ namespace SpecialTestApp.Views
 
             _userImageButton.Click += UserImageButtonOnClick;
 
+            if (!_menu.IsOpen)
+            {
+                Task.Run(() => SetIsOpen(true));
+            }
+
             return view;
+        }
+
+        public override async void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+
         }
 
         public override void OnStop()
@@ -58,13 +69,6 @@ namespace SpecialTestApp.Views
             ViewModel.ToProfileCommand?.Execute(null);
         }
 
-        public override async void OnStart()
-        {
-            base.OnStart();
-
-            await SetIsOpen(true);
-        }
-
         /// <summary>
         /// This is a workaround for the library
         /// The reason is that this library was developed only for activities, not for fragments
@@ -72,11 +76,19 @@ namespace SpecialTestApp.Views
         /// <param name="state"></param>
         private async Task SetIsOpen(bool state)
         {
-            await Task.Delay(200);
+            await Task.Delay(100);
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                if (state) _menu.Open(true);
-                else _menu.Close(true);
+                try
+                {
+                    if (state) _menu.Open(true);
+                    else _menu.Close(true);
+                }
+                catch
+                {
+                    // ignore
+                }
+                
             });
         }
 

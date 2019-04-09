@@ -1,9 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:gravity="center_horizontal"
+    android:padding="20dp"
+    local:MvxBind="Click BackCommand"
     android:layout_height="match_parent">
+
+    <SpecialTestApp.Views.Controls.RoundedImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/roundedUserImageView"/>
+
     <TextView
+            android:layout_width="wrap_content"
+            local:MvxBind="Text UserName"
+            android:textAlignment="center"
+            android:gravity="fill" 
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/abc_action_bar_content_inset_material"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" android:text="hello from profile" />
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
+        android:layout_height="match_parent" >
+                
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Date of birth: "
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            local:MvxBind="Text DateOfBirth"
+            android:layout_height="wrap_content" />
+
+        </LinearLayout>
 </LinearLayout>

@@ -6368,8 +6368,8 @@ namespace SpecialTestApp
 			// aapt resource value: 0x7f09001e
 			public const int MvxBindingTagUnique = 2131296286;
 			
-			// aapt resource value: 0x7f0900b0
-			public const int OpenRadialMenuBtn = 2131296432;
+			// aapt resource value: 0x7f0900b1
+			public const int OpenRadialMenuBtn = 2131296433;
 			
 			// aapt resource value: 0x7f090038
 			public const int SHIFT = 2131296312;
@@ -6428,8 +6428,8 @@ namespace SpecialTestApp
 			// aapt resource value: 0x7f09005e
 			public const int action_mode_close_button = 2131296350;
 			
-			// aapt resource value: 0x7f0900b3
-			public const int action_settings = 2131296435;
+			// aapt resource value: 0x7f0900b4
+			public const int action_settings = 2131296436;
 			
 			// aapt resource value: 0x7f09009d
 			public const int action_text = 2131296413;
@@ -6560,8 +6560,8 @@ namespace SpecialTestApp
 			// aapt resource value: 0x7f090074
 			public const int expanded_menu = 2131296372;
 			
-			// aapt resource value: 0x7f0900af
-			public const int favoritePetImageView = 2131296431;
+			// aapt resource value: 0x7f0900b0
+			public const int favoritePetImageView = 2131296432;
 			
 			// aapt resource value: 0x7f090052
 			public const int fill = 2131296338;
@@ -6626,14 +6626,14 @@ namespace SpecialTestApp
 			// aapt resource value: 0x7f090063
 			public const int list_item = 2131296355;
 			
-			// aapt resource value: 0x7f0900b2
-			public const int masked = 2131296434;
+			// aapt resource value: 0x7f0900b3
+			public const int masked = 2131296435;
 			
 			// aapt resource value: 0x7f0900a1
 			public const int media_actions = 2131296417;
 			
-			// aapt resource value: 0x7f0900ae
-			public const int message = 2131296430;
+			// aapt resource value: 0x7f0900af
+			public const int message = 2131296431;
 			
 			// aapt resource value: 0x7f090033
 			public const int middle = 2131296307;
@@ -6694,6 +6694,9 @@ namespace SpecialTestApp
 			
 			// aapt resource value: 0x7f0900a5
 			public const int right_side = 2131296421;
+			
+			// aapt resource value: 0x7f0900ae
+			public const int roundedUserImageView = 2131296430;
 			
 			// aapt resource value: 0x7f09000c
 			public const int save_image_matrix = 2131296268;
@@ -6881,8 +6884,8 @@ namespace SpecialTestApp
 			// aapt resource value: 0x7f090016
 			public const int view_offset_helper = 2131296278;
 			
-			// aapt resource value: 0x7f0900b1
-			public const int visible = 2131296433;
+			// aapt resource value: 0x7f0900b2
+			public const int visible = 2131296434;
 			
 			// aapt resource value: 0x7f09003e
 			public const int withText = 2131296318;

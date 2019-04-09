@@ -1,8 +1,9 @@
 ﻿using Android.App;
 using Android.OS;
-using Android.Views;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using SpecialTestApp.Core.ViewModels;
+using SpecialTestApp.Helpers;
+using SpecialTestApp.Views.Controls;
 
 namespace SpecialTestApp.Views
 {
@@ -18,8 +19,10 @@ namespace SpecialTestApp.Views
             // Show back button
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetDisplayShowHomeEnabled(true);
-        }
 
-        
+            var roundedImageView = FindViewById<RoundedImageView>(Resource.Id.roundedUserImageView);
+            var bitmap = GraphicHelper.GetImageBitmapFromUrl(ViewModel.UserImageUri);
+            roundedImageView.SetImageBitmap(bitmap);
+        }
     }
 }

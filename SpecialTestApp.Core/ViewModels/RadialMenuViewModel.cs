@@ -19,6 +19,8 @@ namespace SpecialTestApp.Core.ViewModels
 
         public ICommand BackCommand => new MvxAsyncCommand(ExecuteBackCommand);
 
+        public ICommand ToProfileCommand => new MvxAsyncCommand(ExecuteToProfileCommand);
+
         public RadialMenuViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
@@ -32,6 +34,12 @@ namespace SpecialTestApp.Core.ViewModels
         public override void Prepare(string parameter)
         {
             UserImageSource = parameter;
+        }
+
+        private async Task ExecuteToProfileCommand()
+        {
+            await _navigationService.Close(this);
+            await _navigationService.Navigate<ProfileViewModel>();
         }
     }
 }

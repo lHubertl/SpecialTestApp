@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Graphics;
 using Android.Graphics.Drawables;
@@ -7,6 +8,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Com.Oguzdev.Circularfloatingactionmenu.Library;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using MvvmCross.Platforms.Android.Views.Fragments;
@@ -23,6 +25,7 @@ namespace SpecialTestApp.Views
     internal class RadialMenuView : MvxFragment<RadialMenuViewModel>
     {
         private FloatingActionMenu _menu;
+        private View _userImageButton;
 
         public RadialMenuView()
         {
@@ -38,14 +41,28 @@ namespace SpecialTestApp.Views
             SetBlurBackground(view);
             InitializeMenu((ViewGroup) view, InitializeImageView(ViewModel.UserImageSource));
 
+            _userImageButton.Click += UserImageButtonOnClick;
+
             return view;
         }
 
-        public override void OnStart()
+        public override void OnStop()
+        {
+            base.OnStop();
+
+            _userImageButton.Click -= UserImageButtonOnClick;
+        }
+
+        private void UserImageButtonOnClick(object sender, EventArgs e)
+        {
+            ViewModel.ToProfileCommand?.Execute(null);
+        }
+
+        public override async void OnStart()
         {
             base.OnStart();
 
-            SetIsOpen(true);
+            await SetIsOpen(true);
         }
 
         /// <summary>
@@ -53,16 +70,13 @@ namespace SpecialTestApp.Views
         /// The reason is that this library was developed only for activities, not for fragments
         /// </summary>
         /// <param name="state"></param>
-        private void SetIsOpen(bool state)
+        private async Task SetIsOpen(bool state)
         {
-            Task.Run(async () =>
+            await Task.Delay(200);
+            MainThread.BeginInvokeOnMainThread(() =>
             {
-                await Task.Delay(200);
-                MainThread.BeginInvokeOnMainThread(() => 
-                {
-                    if (state) _menu.Open(true);
-                    else _menu.Close(true);
-                });
+                if (state) _menu.Open(true);
+                else _menu.Close(true);
             });
         }
 
@@ -184,7 +198,7 @@ namespace SpecialTestApp.Views
                 imageButtonContentMargin);
 
             // Use SetBackgroundDrawable to set background drawable for centered button
-            var userImageButton = new FloatingActionButton.Builder(context)
+            _userImageButton = new FloatingActionButton.Builder(context)
                 .SetContentContainer(view)
                 .SetContentView(userImageView, userImageParams)
                 .SetPosition((int) GravityFlags.Center)
@@ -226,7 +240,7 @@ namespace SpecialTestApp.Views
                 .SetRadius(imageButtonMenuRadius)
                 .SetStartAngle(startAngle)
                 .SetEndAngle(endAngle)
-                .AttachTo(userImageButton)
+                .AttachTo(_userImageButton)
                 .Build();
         }
     }

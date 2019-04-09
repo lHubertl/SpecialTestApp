@@ -37,12 +37,38 @@ namespace SpecialTestApp.Core.ViewModels
         private async Task ExecuteToProfileCommand()
         {
             await NavigationService.Navigate<ProfileViewModel>();
+
+            // This is a workaround to hide fragment page
             await NavigationService.Close(this);
         }
 
         private async Task ExecuteToScreenCommand(string navigationViewModel)
         {
-            await NavigationService.Navigate(navigationViewModel);
+            Task task = null;
+
+            switch (navigationViewModel)
+            {
+                case nameof(FavoritesViewModel):
+                    task = NavigationService.Navigate<FavoritesViewModel>();
+                    break;
+                case nameof(NotificationsViewModel):
+                    task = NavigationService.Navigate<NotificationsViewModel>();
+                    break;
+                case nameof(SettingsViewModel):
+                    task = NavigationService.Navigate<SettingsViewModel>();
+                    break;
+                case nameof(BasketViewModel):
+                    task = NavigationService.Navigate<BasketViewModel>();
+                    break;
+            }
+
+            if (task != null)
+            {
+                await task;
+
+                // This is a workaround to hide fragment page
+                await NavigationService.Close(this);
+            }
         }
     }
 }

@@ -20,16 +20,6 @@ namespace SpecialTestApp.Views
             SupportActionBar.SetDisplayShowHomeEnabled(true);
         }
 
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            switch (item.ItemId)
-            {
-                case Android.Resource.Id.Home:
-                    ViewModel.BackCommand.Execute(null);
-                    return true;
-            }
-
-            return base.OnOptionsItemSelected(item);
-        }
+        
     }
 }

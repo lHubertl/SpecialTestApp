@@ -5,10 +5,11 @@ using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
 using Com.Oguzdev.Circularfloatingactionmenu.Library;
-using MvvmCross.Binding.BindingContext;
+using MvvmCross.Droid.Support.V4;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using MvvmCross.Platforms.Android.Views.Fragments;
@@ -26,11 +27,6 @@ namespace SpecialTestApp.Views
     {
         private FloatingActionMenu _menu;
         private View _userImageButton;
-
-        public RadialMenuView()
-        {
-
-        }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -72,7 +68,7 @@ namespace SpecialTestApp.Views
         /// <param name="state"></param>
         private async Task SetIsOpen(bool state)
         {
-            await Task.Delay(200);
+            await Task.Delay(100);
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 if (state) _menu.Open(true);
@@ -146,6 +142,12 @@ namespace SpecialTestApp.Views
 
             var frame = new Rect();
             activity.Window.DecorView.GetWindowVisibleDisplayFrame(frame);
+
+            var compatActivity = activity as AppCompatActivity; 
+            if (compatActivity?.SupportActionBar.IsShowing == true)
+            {
+                frame.Top += compatActivity.SupportActionBar.Height;
+            }
 
             var cachedBitmap = view.DrawingCache;
             var statusBarHeight = frame.Top;

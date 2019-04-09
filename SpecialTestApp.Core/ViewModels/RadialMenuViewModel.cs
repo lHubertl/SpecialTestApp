@@ -38,8 +38,8 @@ namespace SpecialTestApp.Core.ViewModels
 
         private async Task ExecuteToProfileCommand()
         {
-            await _navigationService.Close(this);
             await _navigationService.Navigate<ProfileViewModel>();
+            await _navigationService.Close(this);
         }
     }
 }

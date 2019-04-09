@@ -194,9 +194,9 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\outline_shopping_basket_white_18.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\button_action_blue.png" />
-    <AndroidResource Include="Resources\drawable\button_action_blue_selector.xml" />
-    <AndroidResource Include="Resources\drawable\button_action_blue_touch.png" />
+    <AndroidResource Include="Resources\drawable\sub_button.png" />
+    <TransformFile Include="Resources\drawable\sub_button_selector.xml" />
+    <AndroidResource Include="Resources\drawable\sub_button_touch.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

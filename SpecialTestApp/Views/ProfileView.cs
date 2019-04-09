@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.OS;
+using Android.Views;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using SpecialTestApp.Core.ViewModels;
 using SpecialTestApp.Helpers;
@@ -23,6 +24,18 @@ namespace SpecialTestApp.Views
             var roundedImageView = FindViewById<RoundedImageView>(Resource.Id.roundedUserImageView);
             var bitmap = GraphicHelper.GetImageBitmapFromUrl(ViewModel.UserImageUri);
             roundedImageView.SetImageBitmap(bitmap);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Android.Resource.Id.Home:
+                    ViewModel.BackCommand.Execute(null);
+                    return true;
+            }
+
+            return base.OnOptionsItemSelected(item);
         }
     }
 }

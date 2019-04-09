@@ -72,7 +72,7 @@ namespace SpecialTestApp.Views
         /// <param name="state"></param>
         private async Task SetIsOpen(bool state)
         {
-            await Task.Delay(100);
+            await Task.Delay(200);
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 if (state) _menu.Open(true);

@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:gravity="center_horizontal"
     android:padding="20dp"
-    local:MvxBind="Click BackCommand"
     android:layout_height="match_parent">
 
     <SpecialTestApp.Views.Controls.RoundedImageView
@@ -28,7 +27,6 @@
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_marginTop="20dp"
-        android:gravity="center_vertical"
         android:layout_height="match_parent" >
                 
         <TextView

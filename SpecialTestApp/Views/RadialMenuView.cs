@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Graphics;
@@ -46,6 +47,10 @@ namespace SpecialTestApp.Views
             base.OnStop();
 
             _userImageButton.Click -= UserImageButtonOnClick;
+            foreach (var menuSubActionItem in _menu.SubActionItems)
+            {
+                menuSubActionItem.View.Click -= OnMenuItemClick;
+            }
         }
 
         private void UserImageButtonOnClick(object sender, EventArgs e)
@@ -225,7 +230,7 @@ namespace SpecialTestApp.Views
             var lcIcon2 = new ImageView(context);
             var lcIcon3 = new ImageView(context);
             var lcIcon4 = new ImageView(context);
-
+            
             lcIcon1.SetImageDrawable(Resources.GetDrawable(Resource.Drawable.outline_favorite_border_white_18, null));
             lcIcon2.SetImageDrawable(Resources.GetDrawable(Resource.Drawable.outline_notifications_white_18, null));
             lcIcon3.SetImageDrawable(Resources.GetDrawable(Resource.Drawable.outline_settings_white_18, null));
@@ -243,6 +248,43 @@ namespace SpecialTestApp.Views
                 .SetEndAngle(endAngle)
                 .AttachTo(_userImageButton)
                 .Build();
+
+            foreach (var menuSubActionItem in _menu.SubActionItems)
+            {
+                menuSubActionItem.View.Click += OnMenuItemClick;
+            }
+        }
+
+        private void OnMenuItemClick(object sender, EventArgs e)
+        {
+            string navigationPage = null;
+            var item = _menu.SubActionItems.FirstOrDefault(x => x.View == sender);
+
+            if (item is null)
+            {
+                return;
+            }
+
+            switch (_menu.SubActionItems.IndexOf(item))
+            {
+                case 0:
+                    navigationPage = nameof(FavoritesViewModel);
+                    break;
+                case 1:
+                    navigationPage = nameof(NotificationsViewModel);
+                    break;
+                case 2:
+                    navigationPage = nameof(SettingsViewModel);
+                    break;
+                case 3:
+                    navigationPage = nameof(BasketViewModel);
+                    break;
+            }
+
+            if (navigationPage != null)
+            {
+                ViewModel.ToScreenCommand?.Execute(navigationPage);
+            }
         }
     }
 }

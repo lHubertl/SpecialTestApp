@@ -16,6 +16,8 @@ namespace SpecialTestApp.Core.ViewModels
 
         public ICommand ToProfileCommand => new MvxAsyncCommand(ExecuteToProfileCommand);
 
+        public ICommand ToScreenCommand => new MvxAsyncCommand<string>(ExecuteToScreenCommand);
+
         public RadialMenuViewModel(IMvxNavigationService navigationService)
             : base(navigationService)
         {
@@ -36,6 +38,11 @@ namespace SpecialTestApp.Core.ViewModels
         {
             await NavigationService.Navigate<ProfileViewModel>();
             await NavigationService.Close(this);
+        }
+
+        private async Task ExecuteToScreenCommand(string navigationViewModel)
+        {
+            await NavigationService.Navigate(navigationViewModel);
         }
     }
 }

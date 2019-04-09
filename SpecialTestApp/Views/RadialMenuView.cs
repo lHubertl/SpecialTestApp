@@ -9,12 +9,12 @@ using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
 using Com.Oguzdev.Circularfloatingactionmenu.Library;
-using MvvmCross.Droid.Support.V4;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using SpecialTestApp.Core.ViewModels;
 using SpecialTestApp.Helpers;
 using SpecialTestApp.Views.Controls;
+using MvvmCross.Platforms.Android.Views.Fragments;
 using Xamarin.Essentials;
 using FloatingActionButton = Com.Oguzdev.Circularfloatingactionmenu.Library.FloatingActionButton;
 

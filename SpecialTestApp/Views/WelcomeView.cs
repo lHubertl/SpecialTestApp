@@ -17,6 +17,7 @@ namespace SpecialTestApp.Views
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.WelcomeView);
+
             _favoritePetImageView = FindViewById<ImageView>(Resource.Id.favoritePetImageView);
 
             InitializeImageView();

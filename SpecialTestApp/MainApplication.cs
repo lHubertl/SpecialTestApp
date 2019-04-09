@@ -5,7 +5,7 @@ using SpecialTestApp.Core;
 
 namespace SpecialTestApp
 {
-    [Application]
+    [Application(Theme = "@style/AppTheme", SupportsRtl = true, AllowBackup = true)]
     internal class MainApplication : MvvmCross.Platforms.Android.Views.MvxAndroidApplication<Setup, App>
     {
         public MainApplication(IntPtr javaReference, JniHandleOwnership transfer)

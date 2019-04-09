@@ -2,14 +2,11 @@
 using System.Windows.Input;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
 
 namespace SpecialTestApp.Core.ViewModels
 {
-    public class RadialMenuViewModel : MvxViewModel<string> 
+    public class RadialMenuViewModel : BaseViewModel<string> 
     {
-        private readonly IMvxNavigationService _navigationService;
-
         private string _userImageSource;
         public string UserImageSource
         {
@@ -17,18 +14,17 @@ namespace SpecialTestApp.Core.ViewModels
             set => SetProperty(ref _userImageSource, value);
         }
 
-        public ICommand BackCommand => new MvxAsyncCommand(ExecuteBackCommand);
-
         public ICommand ToProfileCommand => new MvxAsyncCommand(ExecuteToProfileCommand);
 
         public RadialMenuViewModel(IMvxNavigationService navigationService)
+            : base(navigationService)
         {
-            _navigationService = navigationService;
+
         }
 
         private Task ExecuteBackCommand()
         {
-            return _navigationService.Close(this);
+            return NavigationService.Close(this);
         }
 
         public override void Prepare(string parameter)
@@ -38,8 +34,8 @@ namespace SpecialTestApp.Core.ViewModels
 
         private async Task ExecuteToProfileCommand()
         {
-            await _navigationService.Navigate<ProfileViewModel>();
-            await _navigationService.Close(this);
+            await NavigationService.Navigate<ProfileViewModel>();
+            await NavigationService.Close(this);
         }
     }
 }

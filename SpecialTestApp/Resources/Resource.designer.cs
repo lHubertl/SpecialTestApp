@@ -2281,26 +2281,26 @@ namespace SpecialTestApp
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
-			// aapt resource value: 0x7f02007c
-			public const int avd_hide_password_1 = 2130837628;
-			
 			// aapt resource value: 0x7f02007d
-			public const int avd_hide_password_2 = 2130837629;
+			public const int avd_hide_password_1 = 2130837629;
 			
 			// aapt resource value: 0x7f02007e
-			public const int avd_hide_password_3 = 2130837630;
+			public const int avd_hide_password_2 = 2130837630;
+			
+			// aapt resource value: 0x7f02007f
+			public const int avd_hide_password_3 = 2130837631;
 			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
 			
-			// aapt resource value: 0x7f02007f
-			public const int avd_show_password_1 = 2130837631;
-			
 			// aapt resource value: 0x7f020080
-			public const int avd_show_password_2 = 2130837632;
+			public const int avd_show_password_1 = 2130837632;
 			
 			// aapt resource value: 0x7f020081
-			public const int avd_show_password_3 = 2130837633;
+			public const int avd_show_password_2 = 2130837633;
+			
+			// aapt resource value: 0x7f020082
+			public const int avd_show_password_3 = 2130837634;
 			
 			// aapt resource value: 0x7f020055
 			public const int button_action = 2130837589;
@@ -2383,11 +2383,11 @@ namespace SpecialTestApp
 			// aapt resource value: 0x7f02006f
 			public const int notification_icon_background = 2130837615;
 			
-			// aapt resource value: 0x7f02007a
-			public const int notification_template_icon_bg = 2130837626;
-			
 			// aapt resource value: 0x7f02007b
-			public const int notification_template_icon_low_bg = 2130837627;
+			public const int notification_template_icon_bg = 2130837627;
+			
+			// aapt resource value: 0x7f02007c
+			public const int notification_template_icon_low_bg = 2130837628;
 			
 			// aapt resource value: 0x7f020070
 			public const int notification_tile_bg = 2130837616;
@@ -2411,13 +2411,16 @@ namespace SpecialTestApp
 			public const int sub_button = 2130837622;
 			
 			// aapt resource value: 0x7f020077
-			public const int sub_button_touch = 2130837623;
+			public const int sub_button_selector = 2130837623;
 			
 			// aapt resource value: 0x7f020078
-			public const int tooltip_frame_dark = 2130837624;
+			public const int sub_button_touch = 2130837624;
 			
 			// aapt resource value: 0x7f020079
-			public const int tooltip_frame_light = 2130837625;
+			public const int tooltip_frame_dark = 2130837625;
+			
+			// aapt resource value: 0x7f02007a
+			public const int tooltip_frame_light = 2130837626;
 			
 			static Drawable()
 			{

@@ -1,11 +1,9 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using Android.App;
-using Android.Content;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
-using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
 using Com.Oguzdev.Circularfloatingactionmenu.Library;
@@ -15,6 +13,7 @@ using MvvmCross.Platforms.Android.Views.Fragments;
 using SpecialTestApp.Core.ViewModels;
 using SpecialTestApp.Helpers;
 using SpecialTestApp.Views.Controls;
+using Xamarin.Essentials;
 using FloatingActionButton = Com.Oguzdev.Circularfloatingactionmenu.Library.FloatingActionButton;
 
 namespace SpecialTestApp.Views
@@ -23,11 +22,13 @@ namespace SpecialTestApp.Views
     [Register(nameof(RadialMenuView))]
     internal class RadialMenuView : MvxFragment<RadialMenuViewModel>
     {
+        private FloatingActionMenu _menu;
+
         public RadialMenuView()
         {
 
         }
-        
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
@@ -35,20 +36,41 @@ namespace SpecialTestApp.Views
             var view = this.BindingInflate(Resource.Layout.RadialMenuView, null, true);
 
             SetBlurBackground(view);
-            var imageView = InitializeImageView(view);
-
-            var frameLayout = view.FindViewById<FrameLayout>(Resource.Id.radialMenuFrameLayout);
-
-            InitializeMenu(frameLayout);
+            InitializeMenu((ViewGroup) view, InitializeImageView(ViewModel.UserImageSource));
 
             return view;
         }
 
-        private ImageView InitializeImageView(View view)
+        public override void OnStart()
         {
-            var imageView = view.FindViewById<RoundedImageView>(Resource.Id.roundedImageView);
+            base.OnStart();
 
-            var bitmap = GraphicHelper.GetImageBitmapFromUrl(ViewModel.UserImageSource);
+            SetIsOpen(true);
+        }
+
+        /// <summary>
+        /// This is a workaround for the library
+        /// The reason is that this library was developed only for activities, not for fragments
+        /// </summary>
+        /// <param name="state"></param>
+        private void SetIsOpen(bool state)
+        {
+            Task.Run(async () =>
+            {
+                await Task.Delay(200);
+                MainThread.BeginInvokeOnMainThread(() => 
+                {
+                    if (state) _menu.Open(true);
+                    else _menu.Close(true);
+                });
+            });
+        }
+
+        private ImageView InitializeImageView(string imageUri)
+        {
+            var imageView = new RoundedImageView(Context);
+
+            var bitmap = GraphicHelper.GetImageBitmapFromUrl(imageUri);
             imageView.SetImageBitmap(bitmap);
 
             return imageView;
@@ -81,7 +103,7 @@ namespace SpecialTestApp.Views
         private void SetupInternalCanvasMatrix(View blurView, Canvas internalCanvas)
         {
             var scaleFactor = 8f;
-            
+
             var frame = new Rect();
             Activity.Window.DecorView.GetWindowVisibleDisplayFrame(frame);
 
@@ -125,71 +147,64 @@ namespace SpecialTestApp.Views
             return bitmap;
         }
 
-        private void InitializeMenu(ViewGroup view)
+        private void InitializeMenu(ViewGroup view, ImageView userImageView)
         {
+            var d = (int) Resources.DisplayMetrics.Density;
+
             // Set up the large red button on the center right side
             // With custom button and content sizes and margins
-            int redActionButtonSize = 108;
-            int redActionButtonMargin = 12;
-            int redActionButtonContentSize = 16;
-            int redActionButtonContentMargin = 36;
-            int redActionMenuRadius = 96;
-            int blueSubActionButtonSize = 48;
-            int blueSubActionButtonContentMargin = 16;
+            var imageButtonSize = 150 * d;
+            var imageButtonMargin = 0;
+            var imageButtonContentSize = imageButtonSize;
+            var imageButtonContentMargin = 0;
+            var imageButtonMenuRadius = 110 * d; // Distance between sub buttons and the button
+            var subActionButtonSize = 55 * d;
+            var subActionButtonContentMargin = 15 * d;
+
+            //Those properties define how to stretch out sub buttons
+            // For example if it 0 and 360 then all buttons will be surround the menu
+            // If you want it to be at the top, choose 90 and 270 
+            const int startAngle = 360;
+            const int endAngle = 180;
 
             var context = view.Context;
 
-            ImageView fabIconStar = new ImageView(context);
+            var starParams = new FrameLayout.LayoutParams(imageButtonSize, imageButtonSize);
+            starParams.SetMargins(imageButtonMargin,
+                imageButtonMargin,
+                imageButtonMargin,
+                imageButtonMargin);
 
+            userImageView.LayoutParameters = starParams;
 
-            var starParams = new FrameLayout.LayoutParams(redActionButtonSize, redActionButtonSize);
-            starParams.SetMargins(redActionButtonMargin,
-                redActionButtonMargin,
-                redActionButtonMargin,
-                redActionButtonMargin);
+            var userImageParams = new FrameLayout.LayoutParams(imageButtonContentSize, imageButtonContentSize);
+            userImageParams.SetMargins(imageButtonContentMargin,
+                imageButtonContentMargin,
+                imageButtonContentMargin,
+                imageButtonContentMargin);
 
-            fabIconStar.LayoutParameters = starParams;
-            fabIconStar.Resources.GetDrawable(Resource.Drawable.button_action_blue_selector, null);
-
-
-
-
-
-
-
-            var fabIconStarParams = new FrameLayout.LayoutParams(redActionButtonContentSize, redActionButtonContentSize);
-            fabIconStarParams.SetMargins(redActionButtonContentMargin,
-                redActionButtonContentMargin,
-                redActionButtonContentMargin,
-                redActionButtonContentMargin);
-
-            var leftCenterButton = new FloatingActionButton.Builder(context)
+            // Use SetBackgroundDrawable to set background drawable for centered button
+            var userImageButton = new FloatingActionButton.Builder(context)
                 .SetContentContainer(view)
-                .SetContentView(fabIconStar, fabIconStarParams)
-                .SetBackgroundDrawable(Resources.GetDrawable(Resource.Drawable.button_action_blue_selector, null))
-                .SetPosition((int)GravityFlags.Center)
+                .SetContentView(userImageView, userImageParams)
+                .SetPosition((int) GravityFlags.Center)
                 .SetLayoutParams(starParams)
                 .Build();
 
             var lCSubBuilder = new SubActionButton.Builder(context);
-            lCSubBuilder.SetBackgroundDrawable(Resources.GetDrawable(Resource.Drawable.button_action_blue_selector, null));
+            lCSubBuilder.SetBackgroundDrawable(Resources.GetDrawable(Resource.Drawable.sub_button_selector, null));
 
-
-
-            FrameLayout.LayoutParams blueContentParams = new FrameLayout.LayoutParams(width: ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
-            blueContentParams.SetMargins(blueSubActionButtonContentMargin,
-                blueSubActionButtonContentMargin,
-                blueSubActionButtonContentMargin,
-                blueSubActionButtonContentMargin);
+            var blueContentParams = new FrameLayout.LayoutParams(width: ViewGroup.LayoutParams.MatchParent,
+                ViewGroup.LayoutParams.MatchParent);
+            blueContentParams.SetMargins(subActionButtonContentMargin,
+                subActionButtonContentMargin,
+                subActionButtonContentMargin,
+                subActionButtonContentMargin);
             lCSubBuilder.SetLayoutParams(blueContentParams);
 
-
             // Set custom layout params
-            FrameLayout.LayoutParams blueParams = new FrameLayout.LayoutParams(blueSubActionButtonSize, blueSubActionButtonSize);
+            var blueParams = new FrameLayout.LayoutParams(subActionButtonSize, subActionButtonSize);
             lCSubBuilder.SetLayoutParams(blueParams);
-
-
-
 
             var lcIcon1 = new ImageView(context);
             var lcIcon2 = new ImageView(context);
@@ -202,18 +217,17 @@ namespace SpecialTestApp.Views
             lcIcon4.SetImageDrawable(Resources.GetDrawable(Resource.Drawable.outline_shopping_basket_white_18, null));
 
             // Build another menu with custom options
-            var leftCenterMenu = new FloatingActionMenu.Builder(context)
+            _menu = new FloatingActionMenu.Builder(context)
                 .SetContentContainer(view)
                 .AddSubActionView(lCSubBuilder.SetContentView(lcIcon1, blueContentParams).Build())
                 .AddSubActionView(lCSubBuilder.SetContentView(lcIcon2, blueContentParams).Build())
                 .AddSubActionView(lCSubBuilder.SetContentView(lcIcon3, blueContentParams).Build())
                 .AddSubActionView(lCSubBuilder.SetContentView(lcIcon4, blueContentParams).Build())
-                .SetRadius(redActionMenuRadius)
-                .SetStartAngle(70)
-                .SetEndAngle(-70)
-                .AttachTo(leftCenterButton)
+                .SetRadius(imageButtonMenuRadius)
+                .SetStartAngle(startAngle)
+                .SetEndAngle(endAngle)
+                .AttachTo(userImageButton)
                 .Build();
         }
-
     }
 }
